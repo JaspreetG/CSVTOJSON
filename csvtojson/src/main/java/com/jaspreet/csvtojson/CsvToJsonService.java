@@ -41,9 +41,6 @@ public class CsvToJsonService {
             if (field.get("type").equals("object")) {
                 value = processSchema((Map<String, Object>) field.get("properties"), csvRow, fullKey);
             }
-            // else if (field.get("type").equals("array")) {
-            // value = processArray(rawValue, (Map<String, Object>) field.get("items"));
-            // }
 
             jsonObject.put(key, value);
         }
@@ -75,18 +72,6 @@ public class CsvToJsonService {
                 throw new ValidationException("Unsupported type: " + type);
         }
     }
-
-    // private List<Object> processArray(String rawValue, Map<String, Object>
-    // itemSchema) throws ValidationException {
-    // List<Object> array = new ArrayList<>();
-    // if (rawValue != null && !rawValue.isEmpty()) {
-    // String[] items = rawValue.split(";");
-    // for (String item : items) {
-    // array.add(parseValue(item, itemSchema));
-    // }
-    // }
-    // return array;
-    // }
 
     private List<Map<String, String>> parseCsv(String csvContent) {
         List<Map<String, String>> rows = new ArrayList<>();
